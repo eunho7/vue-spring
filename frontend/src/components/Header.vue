@@ -11,7 +11,7 @@
             </li>
             <li>
               <router-link to="/login" class="text-white" v-if="!$store.state.account.id">로그인</router-link>
-              <router-link to="/login" class="text-white" v-else>로그아웃</router-link>
+              <router-link to="/login" class="text-white" @click="logout()" v-else>로그아웃</router-link>
             </li>
           </ul>
         </div>
@@ -33,8 +33,20 @@
 </template>
 
 <script>
+import store from '@/scripts/store';
+import router from '@/scripts/router'
+
 export default {
-  name : 'Header'
+  name : 'Header',
+  setup() {
+    const logout = () => {
+        store.commit("setAccount",0);
+        sessionStorage.removeItem("id");
+        router.push({path:"/"});
+    }
+
+    return {logout};
+  }
 }
 </script>
 
