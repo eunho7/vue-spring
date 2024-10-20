@@ -1,6 +1,5 @@
 <template>
 <div class="form-signin w-100 m-auto">
-  <form>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
@@ -18,13 +17,16 @@
         Remember me
       </label>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <button class="btn btn-primary w-100 py-2" @click="submit()">Sign in</button>
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
-  </form>
 </div>
 </template>
 
 <script>
+import store from '@/scripts/store';
+import axios from 'axios';
+import { reactive } from 'vue';
+
 export default {
     setup() {
         const state = reactive({
@@ -34,7 +36,14 @@ export default {
             }
         })
 
-        return {state}
+        const submit = () => {
+            axios.post("/api/account/login", state.form).then((response)=>{
+              store.commit("setAccount", response.data);
+                window.alert("로그인하였습니다.");
+            })
+        }
+
+        return {state, submit}
     }
 }
 </script>
