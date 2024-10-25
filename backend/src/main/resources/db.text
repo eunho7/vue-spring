@@ -1,0 +1,4 @@
+INSERT INTO gallery.items (discount_per, img_path, name, price) VALUES (5, "/img/masterpiece.jpg", "masterpiece", 10000000);
+INSERT INTO gallery.items (discount_per, img_path, name, price) VALUES (10, "/img/The_Starry_Night.jpg", "masterpiece", 20000000);
+INSERT INTO gallery.items (discount_per, img_path, name, price) VALUES (30, "/img/vincent-van-gogh.jpg", "masterpiece", 10000000);
+

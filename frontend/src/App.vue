@@ -1,17 +1,19 @@
 <template>
 
 <Header/>
-
 <RouterView/>
-
 <Footer/>
 
 </template>
 
 <script>
+import axios from 'axios';
 import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
 import store from './scripts/store';
+import { useRoute } from 'vue-router';
+
+import { watch } from 'vue';
 
 export default {
   name: 'App',
@@ -20,11 +22,24 @@ export default {
     Footer
   },
   setup() {
-    const id = sessionStorage.getItem("id");
+    const check = () => {
+      axios.get("/api/account/check").then(({data})=>{
+        console.log(data);
 
-    if(id) {
-      store.commit("setAccount", id);
-    }
+        if(data){
+          store.commit("setAccount",data);
+        }
+        else {
+          store.commit("setAccount",0);
+        }
+      })
+    };
+
+    const route = useRoute();
+
+    watch(route, ()=>{
+      check();
+    })
   }
 }
 </script>
