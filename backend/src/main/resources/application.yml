@@ -1,0 +1,18 @@
+# ?? ?? 8080
+server:
+  port: 8080
+
+# database ??
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/gallery2
+    username: root
+    password: mariadb
+
+  # spring data jpa ??
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
