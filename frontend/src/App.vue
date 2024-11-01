@@ -1,20 +1,18 @@
 <template>
   <Header />
-  <Home/>
+  <routerView/>
   <Footer />
 </template>
 
 <script>
 import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
-import Home from '@/pages/Home.vue';
 
 export default {
   name : 'App',
   components:{
     Header,
     Footer,
-    Home
   }
  
 }
